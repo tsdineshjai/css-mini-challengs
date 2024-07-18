@@ -1,0 +1,56 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-word: purple;
+}
+
+.container {
+
+  display: grid;
+  place-items: center;
+  margin-top: 20vh;
+}
+
+
+h1:after {
+
+  content: "";
+  animation: swapper 4s infinite;
+  background-color: purple;
+  color: white;
+  margin: 0 0.5rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 11px;
+
+  transition: all linear 0.35s;
+
+}
+
+
+@keyframes swapper {
+
+
+
+  0% {
+    content: "Coding"
+  }
+
+  25% {
+    content: "Respect"
+  }
+
+  50% {
+    content: "Success"
+  }
+
+  75% {
+    content: "Strong Mentality"
+  }
+
+  100% {
+    content: "Coding"
+  }
+}

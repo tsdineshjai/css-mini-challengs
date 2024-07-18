@@ -1,0 +1,48 @@
+:root {
+
+  --spoiler-color: yellow;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 40vw;
+  border: solid 1px grey;
+  margin: 0 auto;
+  gap: 1rem;
+  padding: 1rem;
+  flex-direction: column;
+  border-radius: 0.5rem;
+}
+
+.spoiler {
+  background-color: var(--spoiler-color);
+  color: var(--spoiler-color);
+  transition: all 1s ease-in;
+
+}
+
+.spoiler:hover {
+  background-color: initial;
+  color: initial;
+}
+
+.post {
+  background-color: rgba(163, 161, 161, 0.75);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
