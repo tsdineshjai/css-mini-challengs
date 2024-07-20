@@ -1,0 +1,41 @@
+body, html {
+  margin: 0;
+}
+
+:root {
+  --spinner: #f3f3f3;
+  --spinner-active: purple;
+}
+
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50%;
+}
+
+.loader {
+  width: 150px;
+  height: 150px;
+  border: 2rem solid var(--spinner);
+  border-radius: 50%;
+  border-top: 2rem solid var(--spinner-active);
+  animation: animate 2s infinite linear forwards;
+}
+
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

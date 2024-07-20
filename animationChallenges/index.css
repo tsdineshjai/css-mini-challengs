@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+
+body {
+  height: 200vh;
+  margin-top: 5px;
+  background-color: darkblue;
+}
+
+article {
+  padding: 5rem;
+  animation: fader linear;
+  animation-timeline: view();
+  /* animation-range-start: 100px;
+  animation-range-end: 200vh; */
+
+  /* animation-range-start: entry; */
+}
+
+/* 
+.scroll-watcher {
+  height: 10px;
+  position: fixed;
+  background-color: yellow;
+  z-index: 999;
+  top: 0;
+  width: 100%;
+  animation: timelineScroll 3s linear;
+  animation-timeline: scroll(block);
+  margin: auto;
+  border: white solid 2px;
+} */
+
+
+/* @keyframes timelineScroll {
+
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+} */
+
+
+@keyframes fader {
+
+  from {
+    opacity: 0.1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.container {
+
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  gap: 1rem;
+}
+
+
+
+.scroller_ininer {
+
+  animation: scrolling linear;
+
+  animation-timeline: scroll(root);
+
+
+}
+
+
+
+@keyframes scrolling {
+
+  to {
+    transform: translate(calc(-50%-0.5rem));
+  }
+}
