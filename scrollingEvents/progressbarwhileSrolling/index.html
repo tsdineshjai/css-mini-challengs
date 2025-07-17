@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+      #progress {
+
+        margin: 5px 0;
+        border-bottom: 6px solid blue;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="progress">
+
+
+
+    </div>
+
+
+    <script>
+
+      document.body.append(document.createTextNode(
+        "make dinesh jai great again".repeat(1000)
+      ))
+
+      console.log(document.body.scrollHeight);
+
+      const progressElement = document.querySelector("#progress");
+
+      console.log(progressElement);
+
+      let max = document.body.scrollHeight - innerHeight;
+
+      document.addEventListener("scroll", () => {
+
+        progressElement.style.width = `${(pageYOffset / max) * 100}%`;
+
+        console.log(progressElement.style.width)
+        console.log(window.scrollY);
+
+
+
+
+
+      })
+
+
+
+
+    </script>
+
+  </body>
+
+</html>
