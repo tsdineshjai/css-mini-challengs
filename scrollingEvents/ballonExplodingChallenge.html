@@ -1,0 +1,87 @@
+<!-- 
+Challenge :
+
+Write a page that displays a balloon (using the balloon emoji, Image). 
+When you press the up arrow, it should inflate (grow) 10 percent. When you press the down arrow, it should deflate (shrink) 10 percent.
+
+You can control the size of text (emoji are text) by setting the font-size CSS property (style.fontSize) on its parent element. 
+Remember to include a unit in the value—for example, pixels (10px).
+
+The key names of the arrow keys are “ArrowUp” and “ArrowDown”. Make sure the keys change only the balloon, without scrolling the page.
+
+Once you have that working, add a feature where if you blow up the balloon past a certain size, it “explodes.” 
+In this case, exploding means that it is replaced with an Image emoji, and the event handler is removed 
+(so that you can’t inflate or deflate the explosion)
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+      #ballon {
+        width: fit-content;
+        margin: 0 auto;
+        margin-top: 30rem;
+
+
+        width: 50px;
+
+
+
+      }
+    </style>
+  </head>
+
+  <body>
+
+
+    <p id="ballon">🎈</p>
+    <p style="display: none;">💥</p>
+
+
+
+
+    <script>
+
+      const ballonRef = document.getElementById("ballon");
+
+      const handleKeyDown = (e) => {
+
+        if (parseInt(getComputedStyle(ballonRef).fontSize) > 100) {
+          ballonRef.innerText = "💥";
+
+          document.removeEventListener("keydown", handleKeyDown)
+        }
+
+        if (e.key == "ArrowUp") {
+          const widthOFbaloon = parseInt(getComputedStyle(ballonRef).fontSize);
+          const increment = Math.ceil(widthOFbaloon / 10);
+          ballonRef.style.fontSize = `${widthOFbaloon + increment}px`
+
+
+        }
+        if (e.key == "ArrowDown") {
+          const width = parseInt(getComputedStyle(ballonRef).fontSize);
+          const decrement = Math.ceil(width * 0.1);
+          ballonRef.style.fontSize = `${width - decrement}px`;
+        }
+      }
+
+
+
+      document.addEventListener("keydown", handleKeyDown)
+
+
+
+
+    </script>
+
+  </body>
+
+</html>
