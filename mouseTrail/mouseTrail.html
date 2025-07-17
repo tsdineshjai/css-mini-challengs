@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+      .boxes {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        gap: 1rem;
+        animation: all 2s ease-out;
+
+      }
+
+      .box {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+      }
+
+
+      .box:first-child {
+        background-color: orange;
+        transform: translate(4px, 25px);
+      }
+
+      .box:nth-child(2) {
+        background-color: green;
+
+        transform: translate(20px, 52px);
+
+
+
+      }
+
+      .box:last-child {
+        background-color: teal;
+
+        transform: translate(35px, 80px);
+
+
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+
+
+    <div class="boxes">
+
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+
+    </div>
+
+
+    <script>
+
+      const boxes = document.querySelectorAll(".box");
+
+      const positions = Array.from({ length: boxes.length }, () => ({ x: 0, y: 0 }));
+
+      document.addEventListener("mousemove", (e) => {
+
+
+        positions[0].x = e.clientX;
+        positions[0].y = e.clientY;
+
+        for (let i = 1; i < positions.length; i++) {
+          positions[i].x += (positions[i - 1].x - positions[i].x) * 0.3;
+          positions[i].y += (positions[i - 1].y - positions[i].y) * 0.3;
+        }
+
+
+
+        //udpate the posistions 
+
+        let i = 0;
+        for (box of boxes) {
+          box.style.position = "absolute";
+          box.style.left = positions[i].x + "px";
+          box.style.top = positions[i].y + "px";
+          i++;
+        }
+      })
+
+    </script>
+  </body>
+
+</html>
