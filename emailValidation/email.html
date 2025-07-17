@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+      #error {
+        margin-top: 1rem;
+        color: red;
+        text-transform: lowercase;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <p>Name: <input type="text" data-help="Your full name"></p>
+    <p>Email: <input type="email" data-help="Your valid email address"></p>
+    <p id="help"></p>
+    <p id="error"></p>
+
+
+
+
+
+    <script>
+
+      const helpEle = document.getElementById("help");
+      const errorInfo = document.getElementById("error");
+      const nodeList = document.querySelectorAll("input");
+      for (const ele of nodeList) {
+        ele.addEventListener("focus", () => {
+          const content = ele.getAttribute("data-help");
+          helpEle.textContent = content;
+        })
+
+        if (ele.type == "email") {
+          const validation = /^[a-zA-Z0-9%_+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+
+          ele.addEventListener("change", (e) => {
+
+            console.log(e.target.value)
+
+            if (validation.test(e.target.value)) {
+              errorInfo.textContent = "";
+            } else {
+
+              errorInfo.textContent = "Email Address is invalid";
+
+
+            }
+          })
+
+        }
+
+
+        ele.addEventListener("blur", () => {
+          helpEle.textContent = ""
+        })
+      }
+
+
+
+
+
+    </script>
+
+  </body>
+
+</html>
