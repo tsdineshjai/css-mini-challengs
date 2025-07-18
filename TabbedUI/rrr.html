@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic List Filter</title>
+
+    <style>
+      .hideItem {
+        display: none;
+      }
+
+      .showItem {
+        display: block;
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+    <input type="text" id="filterInput" placeholder="Filter items...">
+    <button id="filterButton">Filter</button>
+    <ul id="itemList">
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Orange</li>
+      <li>Grape</li>
+      <li>Kiwi</li>
+      <li>Pineapple</li>
+    </ul>
+    <script>
+
+
+      const inputRef = document.getElementById("filterInput");
+      const btnRef = document.getElementById("filterButton");
+      const itemList = document.getElementById("itemList"); // Get the ul element once
+
+      const filterList = () => {
+        const filterString = inputRef.value.toLowerCase().trim(); // Trim whitespace
+
+        for (const node of itemList.children) {
+          const nodeContent = node.textContent.toLowerCase();
+
+          if (nodeContent.includes(filterString)) {
+            node.classList.remove("hideItem");
+            node.classList.add("showItem"); // Ensure it's shown
+          } else {
+            node.classList.add("hideItem");
+            node.classList.remove("showItem"); // Ensure it's hidden
+          }
+        }
+      };
+
+      // Use the 'input' event for real-time filtering
+      inputRef.addEventListener("input", filterList);
+
+      // Optional: Make the button trigger the filter as well
+      btnRef.addEventListener("click", filterList);
+
+      // Optional: When the input is cleared, show all items immediately.
+      // This is handled naturally by the `filterList` function when filterString is empty.
+      // If you specifically wanted to reset on blur if empty, you could keep a variation of your old logic.
+      // However, the `input` event listener handles this more smoothly.
+
+    </script>
+  </body>
+
+</html>
