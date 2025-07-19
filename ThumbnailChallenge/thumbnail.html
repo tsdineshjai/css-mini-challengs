@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-H">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+      #mainImage {
+        width: 400px;
+        height: 300px;
+        border: 1px solid #ccc;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .thumbnail {
+        width: 80px;
+        height: 60px;
+        border: 1px solid #eee;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+
+      #thumbnails {
+        display: flex;
+        justify-content: flex-start;
+        gap: 2rem;
+        border: solid blue 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <img id="mainImage" src="" alt="Main Image">
+    <div id="thumbnails">
+      <img class="thumbnail" src="https://images.pexels.com/photos/32390716/pexels-photo-32390716.jpeg"
+        data-large-src="images/image1_large.jpg" alt="Thumbnail 1">
+      <img class="thumbnail" src="https://images.pexels.com/photos/29247080/pexels-photo-29247080.jpeg"
+        data-large-src="images/image2_large.jpg" alt="Thumbnail 2">
+      <img class="thumbnail" src="https://images.pexels.com/photos/18766285/pexels-photo-18766285.jpeg"
+        data-large-src="images/image3_large.jpg" alt="Thumbnail 3">
+    </div>
+    <script>
+
+      const mainImageRef = document.getElementById("mainImage");
+      const thumbnailParent = document.getElementById("thumbnails");
+
+
+      const thumbnailList = thumbnailParent.children;
+
+      console.log(thumbnailList);
+
+      for (let child of thumbnailList) {
+
+        child.addEventListener("click", (e) => {
+
+          mainImageRef.src = child.src;
+        })
+
+      };
+    </script>
+  </body>
+
+</html>

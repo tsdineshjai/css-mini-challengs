@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        gap: 2rem;
+
+
+
+      }
+
+
+
+
+
+
+
+      .accor {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 250px;
+
+        min-height: 350px;
+
+
+
+
+
+
+
+        & h3 {
+          padding: 1rem 2rem;
+          border-radius: 12px;
+          cursor: pointer;
+          border: 1px solid green;
+          min-height: fit-content;
+
+
+          &:hover {
+            background-color: rgba(14, 0, 0, 0.5);
+            color: white;
+            transition: all 0.5s ease-in;
+            transform: scale(1.1);
+          }
+
+
+
+
+        }
+
+        & .info {
+
+          display: grid;
+          place-items: center;
+          padding: 1rem 1.25rem;
+          border: 1px solid green;
+          background-color: rgba(221, 221, 17, 0.5);
+          color: rgb(218, 6, 6);
+          text-align: justify;
+          border-radius: 12px;
+          transition: all 1s ease-in;
+
+          min-height: 120px;
+
+
+
+
+
+        }
+
+        & .hideAccordian {
+          display: none;
+        }
+
+
+        & .header-content.active {
+
+          background-color: steelblue;
+
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+
+
+
+    <h3>Acoordians</h3>
+
+    <div class="list">
+
+      <div class="accor">
+        <h3 identifier="arsenal" class="header-content">Arsenal</h3>
+        <p identifier="arsenal" class="info">Arsenal is the most followed london club, they are ones with golden trophy
+        </p>
+      </div>
+      <div class="accor">
+        <h3 identifier="character" class="header-content">Fav Character</h3>
+        <p identifier="character" class="info">Discipline is the one which helps you to bring prosperity in life</p>
+      </div>
+      <div class="accor">
+        <h3 identifier="ngu" class="header-content">Never Give up</h3>
+        <p identifier="ngu" class="info">Till you breathe, you should never give up on anything you dream </p>
+      </div>
+    </div>
+
+
+
+    <script>
+
+      const headerList = document.querySelectorAll(".header-content");
+      const infoList = document.querySelectorAll(".info");
+
+
+      for (const header of headerList) {
+
+
+        header.addEventListener("click", (e) => {
+
+
+          const target = e.target;
+
+          headerList.forEach(h => h.classList.remove("active"));
+          target.classList.add("active");
+
+          for (const info of infoList) {
+
+            const targetIdentity = target.getAttribute("identifier");
+            const infoIdentify = info.getAttribute("identifier");
+
+
+
+            if (targetIdentity == infoIdentify) {
+
+              info.classList.remove("hideAccordian");
+            } else {
+
+              info.classList.add("hideAccordian");
+            }
+          }
+        })
+      }
+
+    </script>
+  </body>
+
+</html>
