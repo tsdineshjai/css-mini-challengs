@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+
+        height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+
+      #formContainer {
+
+        padding: 1rem 3rem;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        & input {
+          padding: 0.75rem 2rem;
+          border-radius: 12px;
+          border: 1px solid grey
+        }
+
+        & input::placeholder {
+          color: rgba(249, 244, 244, 0.5);
+        }
+      }
+
+      .buttonWrapper {
+        border-bottom: 3px solid grey;
+        padding: 1rem 0;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        width: 80%;
+        margin: 5rem auto;
+
+        & button {
+
+          padding: 0.25rem 1rem;
+          border-radius: 12px;
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            transition: transform 0.32s ease-in-out;
+            background-color: rgb(219, 209, 209);
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+
+    <div class="container">
+
+
+
+      <div class="buttonWrapper">
+
+        <button id="add" type="button">ADD</button>
+        <button id="remove" type="button">REMOVE</button>
+      </div>
+
+      <form onSubmit="handleSubmit" id="formContainer">
+
+        <input type="text" name="some-input" id="id-1">
+
+      </form>
+
+
+    </div>
+
+    <script>
+
+      let uId = 1;
+
+      const addBtn = document.getElementById("add");
+      const rmvBtn = document.getElementById("remove");
+
+      const formRef = document.getElementById("formContainer");
+
+      addBtn.addEventListener("click", () => {
+
+        const input = document.createElement("input");
+
+        input.setAttribute("placeholder", "Write your input here...")
+        const id = "id-" + `${++uId}`;
+        input.setAttribute("id", id);
+        input.style.backgroundColor = "steelblue";
+        input.style.color = "white";
+
+        formRef.appendChild(input)
+
+
+      })
+
+
+      rmvBtn.addEventListener("click", () => {
+
+        formRef.removeChild(formRef.lastChild);
+
+      })
+    </script>
+
+  </body>
+
+</html>
