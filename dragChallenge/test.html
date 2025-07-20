@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>offsetX/Y vs pageX/Y Demo</title>
+    <style>
+      .box {
+        width: 300px;
+        height: 200px;
+        background-color: lightblue;
+        margin: 100px;
+        border: 2px solid navy;
+        position: relative;
+      }
+
+      .coords {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <h2>Click inside the box to see offsetX/Y and pageX/Y</h2>
+    <div class="box" id="box"></div>
+    <div class="coords">
+      <p id="offsetCoords">offsetX/Y: </p>
+      <p id="pageCoords">pageX/Y: </p>
+    </div>
+
+    <script>
+      const box = document.getElementById('box');
+      const offsetDisplay = document.getElementById('offsetCoords');
+      const pageDisplay = document.getElementById('pageCoords');
+
+      document.addEventListener('click', function (e) {
+        offsetDisplay.textContent = `offsetX/Y: ${e.offsetX}, ${e.offsetY}`;
+        pageDisplay.textContent = `pageX/Y: ${e.pageX}, ${e.pageY}`;
+      });
+    </script>
+
+  </body>
+
+</html>

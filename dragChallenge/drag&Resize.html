@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable & Resizable Div</title>
+    <style>
+      #myDiv {
+        width: 150px;
+        height: 100px;
+        background-color: lightblue;
+        border: 1px solid blue;
+        position: absolute;
+        /* Crucial for positioning */
+        top: 50px;
+        left: 50px;
+        cursor: move;
+        /* Indicates it's draggable */
+      }
+
+      /* Add a resize handle (e.g., a small corner div) */
+      #myDiv #childDiv {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        background-color: blue;
+        cursor: se-resize;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="myDiv">
+      <div id="childDiv"></div>
+    </div>
+    <script>
+
+
+      const div = document.getElementById("myDiv");
+      let dragOffset = { x: 0, y: 0 };
+
+      function handleMousemove(e) {
+        div.style.top = (e.pageY - dragOffset.y) + "px";
+        div.style.left = (e.pageX - dragOffset.x) + "px";
+      }
+
+      function handleMouseUp() {
+        document.removeEventListener("mousemove", handleMousemove)
+        document.removeEventListener("mouseup", handleMouseUp);
+
+      }
+
+      function handleMouseDown(e) {
+        console.log(e)
+        e.stopPropagation();
+        dragOffset.x = e.clientX - div.offsetLeft;
+        dragOffset.y = e.clientY - div.offsetTop;
+        document.addEventListener("mousemove", handleMousemove)
+        document.addEventListener("mouseup", handleMouseUp)
+      }
+
+      div.addEventListener("mousedown", handleMouseDown);
+
+
+      //resize
+
+
+      const childDiv = document.getElementById("childDiv");
+
+
+      let divIniWidth = 0;
+      let divIniHeight = 0;
+      let childMousePosition = { x: 0, y: 0 };
+
+      function handleChildMouseMove(e) {
+
+        e.stopPropagation();
+        const addableWidth = e.clientX - childMousePosition.x;
+        const addableHeight = e.clientY - childMousePosition.y;
+
+
+        div.style.width = divIniWidth + addableWidth + "px";
+        div.style.height = divIniHeight + addableHeight + "px";
+
+
+      }
+      function handleChildMouseUp(e) {
+
+
+        document.removeEventListener("mousemove", handleChildMouseMove);
+        document.removeEventListener("mouseup", handleChildMouseUp);
+      }
+
+      childDiv.addEventListener("mousedown", (e) => {
+
+        e.preventDefault();
+
+        const myDivDetails = div.getBoundingClientRect(); // Get current dimensions
+        divIniWidth = Math.ceil(myDivDetails.width);
+        divIniHeight = Math.ceil(myDivDetails.height);
+
+        //mousedown for clicking event
+        childMousePosition.x = e.clientX;
+        childMousePosition.y = e.clientY;
+
+
+        document.addEventListener("mousemove", handleChildMouseMove);
+        document.addEventListener("mouseup", handleChildMouseUp);
+
+      })
+
+
+
+    </script>
+  </body>
+
+</html>
