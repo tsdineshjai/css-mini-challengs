@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop List</title>
+    <style>
+      #draggableList {
+        border: 1px solid #ccc;
+        padding: 10px;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      #draggableList li {
+        background-color: #6b3838;
+        border: 1px solid #eee;
+        margin-bottom: 5px;
+        padding: 8px;
+        cursor: grab;
+        list-style-type: none;
+        width: fit-content;
+        color: rgb(239, 224, 224);
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Drag and Drop List Items</h2>
+    <ul id="draggableList">
+      <li draggable="true">Apple</li>
+      <li draggable="true">Banana</li>
+      <li draggable="true">Citrus</li>
+      <li draggable="true">Papaya</li>
+    </ul>
+    <script>
+
+      /* 
+      
+      you need three events
+      dragstart , dragover and drop
+      without dragover event,it wont work
+
+      broswers wont allow droping of elments into other. 
+      so we  need to stop it. so we write e.preventDefault()
+
+      to prevent the bubbling of drop event up the chain
+      we use e.stopPropagation();
+      
+      */
+
+      const ulRef = document.getElementById("draggableList");
+
+      function handleDragStart(e) {
+
+        dragEl = this;
+        this.style.opacity = "0.2";
+        this.style.backgroundColor = "yellow";
+        this.style.color = 'blue';
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.setData("text/html", this.innerHTML);
+      }
+
+      function handleDragEnd(e) {
+        this.style.opacity = "1";
+        this.style.backgroundColor = "#6b3838";
+        this.style.color = 'white';
+      }
+
+      function handleDragOver(e) {
+        e.preventDefault();
+      }
+
+      function handleDrop(e) {
+        e.stopPropagation();
+        if (dragEl != this) {
+
+          dragEl.innerHTML = this.innerHTML;
+          this.innerHTML = e.dataTransfer.getData("text/html");
+        }
+      }
+
+
+      for (const child of ulRef.children) {
+
+        console.log(child)
+        child.addEventListener('dragstart', handleDragStart)
+        child.addEventListener('dragover', handleDragOver)
+        child.addEventListener('dragend', handleDragEnd)
+        child.addEventListener('drop', handleDrop)
+      }
+
+    </script>
+  </body>
+
+</html>
